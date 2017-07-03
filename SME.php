@@ -24,7 +24,7 @@ class SME
     public function getToken()
     {
 
-        $url = $this::$api . '*/gettoken/' . self::$b64;
+        $url = self::$api . '*/gettoken/' . self::$b64;
         $res = json_decode( file_get_contents($url));
         if(isset($res->token) && isset($res->status) && ($res->status == 'ok')){
             echo  self::$login . ' auth ok';
@@ -53,7 +53,7 @@ class SME
 
 
 
-        $url = $this::$api .  $this->token . '/getGroups/';
+        $url = self::$api .  $this->token . '/getGroups/';
         $res = json_decode( file_get_contents($url));
         if(isset($res->groups) &&  isset($res->status) && ($res->status == 'ok')){
            return $res->groups;
@@ -74,7 +74,7 @@ class SME
         $query = '1177331038';
         $query = '0';
 
-        $url = $this::$api .  $this->token . '/getFolderContents/' .base64_encode($query);
+        $url = self::$api .  $this->token . '/getFolderContents/' .base64_encode($query);
         $res = json_decode( file_get_contents($url));
 //        print_r($url);
 //        print_r($res);
